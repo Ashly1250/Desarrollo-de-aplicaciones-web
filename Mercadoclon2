@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercado Libre - Clon Educativo</title>
+    <style>
+        :root {
+            --ml-yellow: #FFE600;
+            --ml-blue: #3483fa;
+            --ml-dark: #333;
+            --ml-gray: #666;
+            --ml-light-gray: #f5f5f5;
+            --ml-border: #e5e5e5;
+            --ml-green: #00a650;
+            --ml-red: #ff0000;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: #ebebeb;
+            color: var(--ml-dark);
+        }
+
+        /* ========== HEADER ========== */
+        .ml-header {
+            background: var(--ml-yellow);
+        }
+
+        .header-top {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 10px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .logo span {
+            color: var(--ml-blue);
+        }
+
+        .search-form {
+            flex: 1;
+            min-width: 250px;
+            display: flex;
+            background: white;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+
+        .search-form input {
+            flex: 1;
+            border: none;
+            padding: 12px 15px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .search-form button {
+            background: #fff;
+            border: none;
+            padding: 0 20px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background 0.2s;
+        }
+
+        .search-form button:hover {
+            background: #f0f0f0;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header-actions a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            white-space: nowrap;
+        }
+
+        .cart-link {
+            position: relative;
+        }
+
+        #cartCount {
+            background: var(--ml-blue);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            position: absolute;
+            top: -8px;
+            right: -10px;
+        }
+
+        /* ========== NAV ========== */
+        .header-nav {
+            background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .header-nav ul {
+            display: flex;
+            list-style: none;
+            padding: 10px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .header-nav a {
+            text-decoration: none;
+            color: #555;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .header-nav a:hover {
+            color: var(--ml-blue);
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 100;
+            min-width: 180px;
+            border-radius: 4px;
+            padding: 8px 0;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu li {
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #333;
+            list-style: none;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .dropdown-menu li:hover {
+            background: #f5f5f5;
+            color: var(--ml-blue);
+        }
+
+        /* ========== MAIN ========== */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* ========== CARRUSEL ========== */
+        .banner-carousel {
+            position: relative;
+            margin-bottom: 30px;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .slide {
+            min-width: 100%;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .slide:nth-child(1) { background: linear-gradient(135deg, #3483fa, #00a650); }
+        .slide:nth-child(2) { background: linear-gradient(135deg, #ff8000, #ff0080); }
+        .slide:nth-child(3) { background: linear-gradient(135deg, #a044ff, #6a3093); }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.4);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+            z-index: 10;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(0,0,0,0.7);
+        }
+
+        .carousel-btn.prev { left: 15px; }
+        .carousel-btn.next { right: 15px; }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .dot.active {
+            background: white;
+        }
+
+        /* ========== TARJETAS PROMOCIONALES ========== */
+        .promo-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .promo-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+
+        .promo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+        }
+
+        .promo-card h3 {
+            color: var(--ml-blue);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .promo-card p {
+            color: var(--ml-gray);
+            font-size: 14px;
+        }
+
+        /* ========== PRODUCTOS ========== */
+        .products-section h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background: white;
+            border: 1px solid var(--ml-border);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: box-shadow 0.3s, transform 0.3s;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+            transform: translateY(-4px);
+        }
+
+        .product-image {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            display: block;
+            background: #f5f5f5;
+        }
+
+        .product-info {
+            padding: 15px;
+        }
+
+        .product-title {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 8px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .product-price-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 5px;
+            flex-wrap: wrap;
+        }
+
+        .product-price {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .product-old-price {
+            font-size: 14px;
+            color: #999;
+            text-decoration: line-through;
+        }
+
+        .product-discount {
+            color: var(--ml-green);
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .product-installments {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .product-shipping {
+            font-size: 13px;
+            color: var(--ml-green);
+            font-weight: bold;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .btn-add-cart {
+            background: var(--ml-blue);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            flex: 1;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+
+        .btn-add-cart:hover {
+            background: #2a6fbf;
+        }
+
+        .btn-fav {
+            background: #fff;
+            border: 1px solid var(--ml-border);
+            border-radius: 4px;
+            padding: 8px;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .btn-fav:hover {
+            background: #fef0f0;
+            color: var(--ml-red);
+        }
+
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px;
+            color: #666;
+            font-size: 18px;
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            background: #fff;
+            border-top: 1px solid var(--ml-border);
+            padding: 30px 20px;
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-col h4 {
+            margin-bottom: 15px;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-col li {
+            margin-bottom: 8px;
+        }
+
+        .footer-col a {
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: var(--ml-blue);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            margin-top: 20px;
+            border-top: 1px solid var(--ml-border);
+            color: #999;
+            font-size: 13px;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .header-top {
+                gap: 10px;
+            }
+            .header-actions {
+                gap: 10px;
+            }
+            .header-actions a span {
+                display: none;
+            }
+            .slide {
+                height: 200px;
+                font-size: 1.5rem;
+            }
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ==================== HEADER ==================== -->
+    <header class="ml-header">
+        <div class="header-top">
+            <a href="#" class="logo">Mercado<span>Libre</span></a>
+            <form class="search-form" id="searchForm">
+                <input type="text" id="searchInput" placeholder="Buscar productos, marcas y más...">
+                <button type="submit" aria-label="Buscar">🔍</button>
+            </form>
+            <div class="header-actions">
+                <a href="#" class="location">📍 <span>Enviar a Capital Federal</span></a>
+                <a href="#" class="user">👤 <span>Usuario</span></a>
+                <a href="#" class="cart-link">🛒 <span>Carrito</span> <span id="cartCount">0</span></a>
+            </div>
+        </div>
+        <nav class="header-nav">
+            <ul>
+                <li class="dropdown">
+                    <a href="#">Categorías ▾</a>
+                    <ul class="dropdown-menu" id="categoryMenu">
+                        <li data-category="electronica">Electrónica</li>
+                        <li data-category="hogar">Hogar</li>
+                        <li data-category="moda">Moda</li>
+                        <li data-category="deportes">Deportes</li>
+                        <li data-category="juguetes">Juguetes</li>
+                        <li data-category="todos">Todas</li>
+                    </ul>
+                </li>
+                <li><a href="#">Ofertas</a></li>
+                <li><a href="#">Historial</a></li>
+                <li><a href="#">Supermercado</a></li>
+                <li><a href="#">Moda</a></li>
+                <li><a href="#">Vender</a></li>
+                <li><a href="#">Ayuda</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ==================== MAIN ==================== -->
+    <main>
+        <!-- Carrusel -->
+        <section class="banner-carousel" id="carousel">
+            <div class="carousel-track" id="carouselTrack">
+                <div class="slide">OFERTAS DEL DÍA</div>
+                <div class="slide">ENVÍO GRATIS</div>
+                <div class="slide">HASTA 12 CUOTAS SIN INTERÉS</div>
+            </div>
+            <button class="carousel-btn prev" id="prevBtn">❮</button>
+            <button class="carousel-btn next" id="nextBtn">❯</button>
+            <div class="carousel-dots" id="dots"></div>
+        </section>
+
+        <!-- Tarjetas promocionales -->
+        <section class="promo-cards">
+            <div class="promo-card">
+                <h3>Hasta 40% OFF</h3>
+                <p>En productos seleccionados de tecnología</p>
+            </div>
+            <div class="promo-card">
+                <h3>Envío gratis</h3>
+                <p>Comprando desde $25.000</p>
+            </div>
+            <div class="promo-card">
+                <h3>12 cuotas sin interés</h3>
+                <p>Con tarjetas seleccionadas</p>
+            </div>
+        </section>
+
+        <!-- Productos -->
+        <section class="products-section">
+            <h2 id="sectionTitle">Productos destacados</h2>
+            <div class="products-grid" id="productsGrid">
+                <!-- Los productos se generan dinámicamente con JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>Acerca de</h4>
+                <ul>
+                    <li><a href="#">Mercado Libre</a></li>
+                    <li><a href="#">Investor Relations</a></li>
+                    <li><a href="#">Trabaja con nosotros</a></li>
+                    <li><a href="#">Fundación</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ayuda</h4>
+                <ul>
+                    <li><a href="#">Comprar</a></li>
+                    <li><a href="#">Vender</a></li>
+                    <li><a href="#">Resolución de problemas</a></li>
+                    <li><a href="#">Seguridad</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Redes sociales</h4>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">YouTube</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Mi cuenta</h4>
+                <ul>
+                    <li><a href="#">Ingresá</a></li>
+                    <li><a href="#">Mis compras</a></li>
+                    <li><a href="#">Favoritos</a></li>
+                    <li><a href="#">Configuración</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Clon educativo de Mercado Libre. No afiliado a MercadoLibre Inc.</p>
+        </div>
+    </footer>
+
+    <script>
+        // ==================== DATOS DE PRODUCTOS ====================
+        const products = [
+            {
+                id: 1,
+                title: "Smartphone Samsung Galaxy A54 128GB 5G",
+                price: 1299999,
+                oldPrice: 1499999,
+                discount: 13,
+                installments: "12x $108.333 sin interés",
+                shipping: "Envío gratis",
+                category: "electronica",
+                image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=300&h=300&fit=crop&auto=format&q=80"
+            },
+            {
+                id: 2,
+                title: "Notebook Lenovo IdeaPad 3 15.6\" 8GB 256GB SSD",
+                price: 1899999,
+                oldPrice: 2199999,
+                discount: 14,
+                installments: "12x $158.333 sin interés",
+                shipping: "Envío gratis",
+                category: "electronica",
+                image: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=300&h=300&fit=crop&auto=format&q=80"
+            },
+            {
+                id: 3,
+                title: "Auriculares Inalámbricos Sony WH-CH520",
+                price: 149999,
+                oldPrice: 199999,
+                discount: 25,
+                installments: "6x $25.000 sin interés",
+                shipping: "Envío gratis",
+                category: "electronica",
+                image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300&h=300&fit=crop&auto=format&q=80"
+            },
+            {
+                id: 4,
+                title: "Cafetera Eléctrica Oster 12 Tazas",
+                price: 89999,
+                oldPrice: 119999,
+                discount: 25,
+                installments: "3x $29.999 sin interés",
+                shipping: "Envío gratis",
+                category: "hogar",
+                image: "https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?w=300&h=300&fit=crop&auto=format&q=80"
+            },
+            {
+                id: 5,
+                title: "Juego de Sábanas 4 Piezas Queen Size",
+                price: 54999,
+                oldPrice: 74999,
+                discount: 27,
+                installments: "6x $9.166 sin interés",
+                shipping: "Envío gratis",
+                category: "hogar",
+                image: "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?w=300&h=300&fit=crop&auto=format&q=80"
+            },
+            {
+                id: 6,
+                title: "Zapatillas Deportivas Running Hombre",
+                price: 189999,
+                oldPrice: 249999,
+                discount: 24,
+                installments: "6x $31.666 sin interés",
+                shipping: "Envío gratis",
+                category: "moda",
+                image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300&h=300&fit=crop&auto=format&q=80"
+            },
+            {
+                id: 7,
+                title: "Campera de Abrigo Mujer Invierno",
+                price: 159999,
+                oldPrice: 219999,
+                discount: 27,
+                installments: "3x $53.333 sin interés",
+                shipping: "Envío gratis",
+                category: "moda",
+                image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=300&h=300&fit=crop&auto=format&q=80"
+            },
+            {
+                id: 8,
+                title: "Bicicleta Mountain Bike Rodado 29",
+                price: 549999,
+                oldPrice: 699999,
+                discount: 21,
+                installments: "12x $45.833 sin interés",
+                shipping: "Envío gratis",
+                category: "deportes",
+                image: "https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=300&h=300&fit=crop&auto=format&q=80"
+            },
+            {
+                id: 9,
+                title: "Set de Pesas 20kg Mancuernas",
+                price: 119999,
+                oldPrice: 149999,
+                discount: 20,
+                installments: "6x $19.999 sin interés",
+                shipping: "Envío gratis",
+                category: "deportes",
+                image: "https://images.unsplash.com/photo-1638536532686-d610adfc8e5c?w=300&h=300&fit=crop&auto=format&q=80"
+            },
+            {
+                id: 10,
+                title: "LEGO Classic Caja de Ladrillos Creativos",
+                price: 99999,
+                oldPrice: 129999,
+                discount: 23,
+                installments: "3x $33.333 sin interés",
+                shipping: "Envío gratis",
+                category: "juguetes",
+                image: "https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=300&h=300&fit=crop&auto=format&q=80"
+            },
+            {
+                id: 11,
+                title: "Muñeca Barbie Dreamhouse",
+                price: 229999,
+                oldPrice: 299999,
+                discount: 23,
+                installments: "6x $38.333 sin interés",
+                shipping: "Envío gratis",
+                category: "juguetes",
+                image: "https://images.unsplash.com/photo-1594787318286-3d835c1d207f?w=300&h=300&fit=crop&auto=format&q=80"
+            },
+            {
+                id: 12,
+                title: "Tablet Amazon Fire HD 10 32GB",
+                price: 219999,
+                oldPrice: 269999,
+                discount: 19,
+                installments: "6x $36.666 sin interés",
+                shipping: "Envío gratis",
+                category: "electronica",
+                image: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=300&h=300&fit=crop&auto=format&q=80"
+            }
+        ];
+
+        // ==================== ESTADO GLOBAL ====================
+        let cartCount = 0;
+        let currentCategory = 'todos';
+        let currentSearch = '';
+
+        // ==================== REFERENCIAS DOM ====================
+        const productsGrid = document.getElementById('productsGrid');
+        const searchInput = document.getElementById('searchInput');
+        const searchForm = document.getElementById('searchForm');
+        const categoryMenu = document.getElementById('categoryMenu');
+        const sectionTitle = document.getElementById('sectionTitle');
+        const cartCountElement = document.getElementById('cartCount');
+
+        // ==================== FUNCIONES ====================
+        function formatPrice(price) {
+            return '$' + price.toLocaleString('es-AR');
+        }
+
+        function renderProducts(filteredProducts) {
+            if (filteredProducts.length === 0) {
+                productsGrid.innerHTML = '<div class="no-results">No se encontraron productos. Intenta con otra búsqueda.</div>';
+                return;
+            }
+
+            productsGrid.innerHTML = filteredProducts.map(product => `
+                <div class="product-card" data-id="${product.id}">
+                    <img class="product-image" src="${product.image}" alt="${product.title}" loading="lazy">
+                    <div class="product-info">
+                        <h3 class="product-title" title="${product.title}">${product.title}</h3>
+                        <div class="product-price-row">
+                            <span class="product-price">${formatPrice(product.price)}</span>
+                            ${product.oldPrice ? `<span class="product-old-price">${formatPrice(product.oldPrice)}</span>` : ''}
+                            ${product.discount ? `<span class="product-discount">${product.discount}% OFF</span>` : ''}
+                        </div>
+                        ${product.installments ? `<p class="product-installments">${product.installments}</p>` : ''}
+                        ${product.shipping ? `<p class="product-shipping">${product.shipping}</p>` : ''}
+                        <div class="product-actions">
+                            <button class="btn-add-cart" data-id="${product.id}">Agregar al carrito</button>
+                            <button class="btn-fav" data-id="${product.id}">❤️</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function applyFilters() {
+            let filtered = products;
+
+            // Filtro por categoría
+            if (currentCategory !== 'todos') {
+                filtered = filtered.filter(p => p.category === currentCategory);
+            }
+
+            // Filtro por búsqueda
+            if (currentSearch.trim() !== '') {
+                const query = currentSearch.toLowerCase().trim();
+                filtered = filtered.filter(p => 
+                    p.title.toLowerCase().includes(query) ||
+                    p.category.toLowerCase().includes(query)
+                );
+            }
+
+            renderProducts(filtered);
+            updateSectionTitle();
+        }
+
+        function updateSectionTitle() {
+            if (currentCategory === 'todos') {
+                sectionTitle.textContent = currentSearch ? `Resultados para "${currentSearch}"` : 'Productos destacados';
+            } else {
+                const categoryNames = {
+                    electronica: 'Electrónica',
+                    hogar: 'Hogar',
+                    moda: 'Moda',
+                    deportes: 'Deportes',
+                    juguetes: 'Juguetes'
+                };
+                sectionTitle.textContent = currentSearch 
+                    ? `Resultados en ${categoryNames[currentCategory]} para "${currentSearch}"`
+                    : `${categoryNames[currentCategory]}`;
+            }
+        }
+
+        function addToCart(productId) {
+            cartCount++;
+            cartCountElement.textContent = cartCount;
+            // Animación simple
+            cartCountElement.style.transform = 'scale(1.5)';
+            setTimeout(() => {
+                cartCountElement.style.transform = 'scale(1)';
+            }, 200);
+            // Aquí se podría agregar el producto a un array de carrito real
+            console.log(`Producto ${productId} agregado al carrito. Total: ${cartCount}`);
+        }
+
+        function toggleFavorite(button) {
+            button.textContent = button.textContent === '❤️' ? '💖' : '❤️';
+        }
+
+        // ==================== EVENTOS ====================
+        // Delegación de eventos para acciones de productos
+        productsGrid.addEventListener('click', (e) => {
+            const addButton = e.target.closest('.btn-add-cart');
+            if (addButton) {
+                e.stopPropagation();
+                addToCart(parseInt(addButton.dataset.id));
+                return;
+            }
+
+            const favButton = e.target.closest('.btn-fav');
+            if (favButton) {
+                e.stopPropagation();
+                toggleFavorite(favButton);
+                return;
+            }
+
+            // Click en la tarjeta (excepto botones)
+            const card = e.target.closest('.product-card');
+            if (card) {
+                const productId = parseInt(card.dataset.id);
+                const product = products.find(p => p.id === productId);
+                if (product) {
+                    alert(`Producto: ${product.title}\nPrecio: ${formatPrice(product.price)}\n${product.installments ? product.installments : ''}\n${product.shipping ? product.shipping : ''}`);
+                }
+            }
+        });
+
+        // Búsqueda en tiempo real
+        searchInput.addEventListener('input', (e) => {
+            currentSearch = e.target.value;
+            applyFilters();
+        });
+
+        // Evitar envío del formulario (recarga de página)
+        searchForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            currentSearch = searchInput.value;
+            applyFilters();
+        });
+
+        // Filtro por categoría
+        categoryMenu.addEventListener('click', (e) => {
+            const li = e.target.closest('li');
+            if (li) {
+                currentCategory = li.dataset.category;
+                // Cerrar el dropdown manualmente (en móvil)
+                document.querySelector('.dropdown-menu').style.display = 'none';
+                setTimeout(() => {
+                    document.querySelector('.dropdown-menu').style.display = '';
+                }, 100);
+                applyFilters();
+            }
+        });
+
+        // ==================== CARRUSEL ====================
+        const carouselTrack = document.getElementById('carouselTrack');
+        const slides = carouselTrack.children;
+        const totalSlides = slides.length;
+        const dotsContainer = document.getElementById('dots');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        let currentSlide = 0;
+        let autoplayInterval;
+
+        // Crear puntos
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (i === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(i));
+            dotsContainer.appendChild(dot);
+        }
+
+        const dots = dotsContainer.querySelectorAll('.dot');
+
+        function updateCarousel() {
+            carouselTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            if (currentSlide < 0) currentSlide = totalSlides - 1;
+            if (currentSlide >= totalSlides) currentSlide = 0;
+            updateCarousel();
+            resetAutoplay();
+        }
+
+        function nextSlide() {
+            goToSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            goToSlide(currentSlide - 1);
+        }
+
+        function startAutoplay() {
+            autoplayInterval = setInterval(nextSlide, 4000);
+        }
+
+        function resetAutoplay() {
+            clearInterval(autoplayInterval);
+            startAutoplay();
+        }
+
+        prevBtn.addEventListener('click', prevSlide);
+        nextBtn.addEventListener('click', nextSlide);
+
+        // Pausar autoplay al pasar el mouse
+        const carousel = document.getElementById('carousel');
+        carousel.addEventListener('mouseenter', () => clearInterval(autoplayInterval));
+        carousel.addEventListener('mouseleave', startAutoplay);
+
+        // Iniciar autoplay
+        startAutoplay();
+
+        // ==================== INICIALIZACIÓN ====================
+        applyFilters();
+    </script>
+</body>
+</html>
