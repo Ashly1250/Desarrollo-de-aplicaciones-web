@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mercado Libre — Demo educativa</title>
+<style>
+:root{
+  --yellow:#ffe600;
+  --blue:#3483fa;
+  --dark:#333;
+  --green:#00a650;
+  --bg:#ebebeb;
+  --card:#fff;
+  --muted:#666;
+  --shadow:0 1px 2px rgba(0,0,0,.08);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--dark)}
+button,input{font:inherit}
+a{text-decoration:none;color:inherit}
+
+.top{
+  background:var(--yellow);
+  min-height:108px;
+}
+.top-inner{
+  width:min(1200px,94%);
+  margin:auto;
+  padding:10px 0 14px;
+}
+.header-row{
+  display:grid;
+  grid-template-columns:170px 1fr auto;
+  gap:18px;
+  align-items:center;
+}
+.logo{
+  font-size:27px;font-weight:800;letter-spacing:-1.5px;
+  color:#222;white-space:nowrap;
+}
+.logo span{display:block;font-size:11px;font-weight:500;letter-spacing:0}
+.search{
+  display:flex;height:42px;background:white;border-radius:4px;
+  box-shadow:0 1px 2px rgba(0,0,0,.2);overflow:hidden;
+}
+.search input{flex:1;border:0;padding:0 16px;outline:none;font-size:15px}
+.search button{width:50px;border:0;background:#fff;border-left:1px solid #eee;cursor:pointer;font-size:18px}
+.account{display:flex;gap:14px;font-size:13px;align-items:center}
+.account a{white-space:nowrap}
+.account .signup{font-weight:700}
+
+.nav{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:12px;margin-top:12px;font-size:13px;
+}
+.nav-left,.nav-right{display:flex;gap:18px;align-items:center}
+.nav a:hover{text-decoration:underline}
+
+.page{width:min(1200px,94%);margin:auto}
+.hero{
+  margin-top:0;background:linear-gradient(90deg,#ffe600,#fff09b,#ffe600);
+  min-height:185px;display:grid;grid-template-columns:1fr 1.4fr 1fr;
+  align-items:center;padding:22px 40px;overflow:hidden;
+}
+.hero .small{font-size:15px}
+.hero h1{font-size:31px;margin:8px 0}
+.hero p{margin:0;font-size:14px}
+.hero-center{text-align:center}
+.hero-center .fake-badge{
+  display:inline-block;background:white;border-radius:12px;padding:10px 18px;
+  font-size:24px;font-weight:800;color:#3483fa;box-shadow:var(--shadow)
+}
+.hero-side{text-align:center}
+.hero-side strong{display:block;font-size:17px}
+
+.quick{
+  display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin:18px 0;
+}
+.quick-card{
+  background:white;border-radius:7px;min-height:110px;padding:14px 10px;
+  box-shadow:var(--shadow);text-align:center;cursor:pointer;transition:.15s
+}
+.quick-card:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.12)}
+.quick-icon{font-size:30px;margin-bottom:8px}
+.quick-card b{display:block;font-size:13px}
+.quick-card span{font-size:11px;color:var(--muted)}
+
+.banner-row{
+  display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:2px;margin:14px 0 20px;
+}
+.banner{min-height:64px;padding:12px 16px;color:#fff;font-weight:700}
+.banner:nth-child(1){background:#444}.banner:nth-child(2){background:#555}
+.banner:nth-child(3){background:#ffe600;color:#222}.banner:nth-child(4){background:#00a650}
+
+.section-title{font-size:20px;margin:22px 0 12px}
+.product-wrap{position:relative}
+.products{
+  display:grid;grid-template-columns:repeat(5,1fr);gap:10px;
+}
+.product{
+  background:var(--card);border-radius:6px;overflow:hidden;min-height:360px;
+  box-shadow:var(--shadow);cursor:pointer;transition:.18s;
+}
+.product:hover{transform:translateY(-3px);box-shadow:0 5px 18px rgba(0,0,0,.13)}
+.product-img{
+  height:190px;background:#f7f7f7;display:flex;align-items:center;justify-content:center;
+  overflow:hidden
+}
+.product-img img{width:100%;height:100%;object-fit:contain}
+.product-info{padding:13px}
+.price{font-size:21px;margin-bottom:4px}
+.installments{font-size:12px;color:var(--green);font-weight:600}
+.discount{font-size:12px;color:var(--green);font-weight:700;margin-top:4px}
+.product-name{font-size:13px;line-height:1.35;margin-top:10px;color:#444}
+.free{font-size:12px;color:var(--green);font-weight:700;margin-top:9px}
+
+.slider-btn{
+  position:absolute;top:45%;transform:translateY(-50%);width:38px;height:38px;
+  border:0;border-radius:50%;background:#fff;box-shadow:0 2px 8px #aaa;
+  cursor:pointer;z-index:3;font-size:20px
+}
+.prev{left:-18px}.next{right:-18px}
+
+.payments{
+  background:#fff;border-radius:5px;margin:22px 0;padding:18px;
+  display:grid;grid-template-columns:repeat(4,1fr);align-items:center;text-align:center;
+  box-shadow:var(--shadow)
+}
+.pay-item{border-right:1px solid #ddd;padding:5px 15px}
+.pay-item:last-child{border:0}
+.pay-icon{font-size:30px}.pay-item b{display:block;font-size:14px;margin:4px 0}.pay-item span{font-size:12px;color:#777}
+
+.dark-banner{
+  display:grid;grid-template-columns:1fr 1fr;min-height:140px;margin:20px 0;
+  border-radius:5px;overflow:hidden;background:#222;color:#fff;
+}
+.dark-copy{padding:25px;background:linear-gradient(100deg,#111,#333)}
+.dark-copy h2{margin:0 0 8px;font-size:23px}.dark-copy p{font-size:13px;color:#ddd}
+.dark-art{
+  display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(circle at 50% 50%,#555,#111);font-size:52px;
+}
+
+.promo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.promo{min-height:115px;border-radius:5px;padding:18px;display:flex;flex-direction:column;justify-content:center}
+.promo h3{margin:0 0 5px;font-size:18px}.promo p{margin:0;font-size:12px}
+.p1{background:#ff7043;color:white}.p2{background:#19a974;color:white}.p3{background:#ddd;color:#222}
+
+.category-grid{
+  display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:35px
+}
+.category{
+  background:#fff;border-radius:5px;padding:13px 8px;text-align:center;
+  font-size:12px;box-shadow:var(--shadow);cursor:pointer
+}
+.category .cat-icon{font-size:27px;margin-bottom:7px}
+
+.footer{
+  background:#fff;border-top:1px solid #ddd;padding:30px 0 45px;color:#666;
+}
+.footer-inner{width:min(1200px,94%);margin:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:25px}
+.footer h4{color:#333;margin-top:0}.footer p{font-size:12px;line-height:1.7}
+
+.toast{
+  position:fixed;bottom:22px;right:22px;background:#333;color:#fff;
+  padding:12px 18px;border-radius:6px;opacity:0;transform:translateY(15px);
+  pointer-events:none;transition:.25s;z-index:10;font-size:13px
+}
+.toast.show{opacity:1;transform:none}
+
+@media(max-width:900px){
+ .header-row{grid-template-columns:1fr}.account{display:none}
+ .nav-left,.nav-right{gap:8px;flex-wrap:wrap}.hero{grid-template-columns:1fr;text-align:center}
+ .hero-side{display:none}.quick{grid-template-columns:repeat(3,1fr)}
+ .products{grid-template-columns:repeat(3,1fr)}
+ .category-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:600px){
+ .page{width:96%}.quick{grid-template-columns:repeat(2,1fr)}
+ .products{grid-template-columns:repeat(2,1fr)}
+ .product-img{height:145px}.product{min-height:315px}
+ .payments{grid-template-columns:repeat(2,1fr);gap:12px}.pay-item:nth-child(2){border:0}
+ .banner-row,.promo-grid,.dark-banner{grid-template-columns:1fr}
+ .footer-inner{grid-template-columns:1fr 1fr}
+ .nav-right{display:none}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="header-row">
+      <div class="logo">mercado libre<span>DEMO EDUCATIVA</span></div>
+      <form class="search" id="searchForm">
+        <input id="searchInput" placeholder="Buscar productos, marcas y más..." autocomplete="off">
+        <button type="submit">⌕</button>
+      </form>
+      <div class="account">
+        <a href="#">Crea tu cuenta</a>
+        <a href="#">Ingresa</a>
+        <a href="#">Mis compras</a>
+      </div>
+    </div>
+
+    <div class="nav">
+      <div class="nav-left">
+        <a href="#">Categorías ▾</a><a href="#">Ofertas</a><a href="#">Historial</a>
+        <a href="#">Supermercado</a><a href="#">Moda</a><a href="#">Vender</a>
+      </div>
+      <div class="nav-right"><a href="#">Ayuda</a><a href="#">🛒</a></div>
+    </div>
+  </div>
+</header>
+
+<main class="page">
+  <section class="hero">
+    <div class="hero-side">
+      <div class="small">Compra desde casa</div>
+      <strong>Envíos rápidos</strong>
+    </div>
+    <div class="hero-center">
+      <div class="fake-badge">Apoyemos a Colombia 🇨🇴</div>
+      <h1>Encuentra lo que buscas</h1>
+      <p>Millones de productos en un solo lugar</p>
+    </div>
+    <div class="hero-side">
+      <strong>Compra protegida</strong>
+      <div class="small">Pagos seguros y fáciles</div>
+    </div>
+  </section>
+
+  <section class="quick">
+    <div class="quick-card" data-msg="Buscando inmuebles..."><div class="quick-icon">🏠</div><b>Inmuebles</b><span>Encuentra tu próximo hogar</span></div>
+    <div class="quick-card" data-msg="Buscando vehículos..."><div class="quick-icon">🚗</div><b>Vehículos</b><span>Compra tu próximo carro</span></div>
+    <div class="quick-card" data-msg="Buscando celulares..."><div class="quick-icon">📱</div><b>Celulares</b><span>Las mejores ofertas</span></div>
+    <div class="quick-card" data-msg="Abriendo entretenimiento..."><div class="quick-icon">🎮</div><b>Entretenimiento</b><span>Juegos y tecnología</span></div>
+    <div class="quick-card" data-msg="Buscando hogar..."><div class="quick-icon">🛋️</div><b>Hogar</b><span>Todo para tu casa</span></div>
+    <div class="quick-card" data-msg="Buscando monedas..."><div class="quick-icon">💰</div><b>Más de $20.000</b><span>Compra y vende fácil</span></div>
+  </section>
+
+  <section class="banner-row">
+    <div class="banner">OFERTAS IMPERDIBLES<br><small>Precios especiales</small></div>
+    <div class="banner">PRODUCTOS ÚNICOS<br><small>Encuentra lo que buscas</small></div>
+    <div class="banner">LO MÁS VENDIDO<br><small>Elegidos por miles</small></div>
+    <div class="banner">🚚 ENVÍOS<br><small>Rápidos y seguros</small></div>
+  </section>
+
+  <h2 class="section-title">Ofertas del día</h2>
+  <section class="product-wrap">
+    <button class="slider-btn prev" id="prev1">‹</button>
+    <div class="products" id="products1"></div>
+    <button class="slider-btn next" id="next1">›</button>
+  </section>
+
+  <section class="payments">
+    <div class="pay-item"><div class="pay-icon">📦</div><b>Envíos gratis</b><span>En millones de productos</span></div>
+    <div class="pay-item"><div class="pay-icon">💳</div><b>Compra protegida</b><span>Tu dinero está seguro</span></div>
+    <div class="pay-item"><div class="pay-icon">💵</div><b>Cuotas y pagos</b><span>Compra ahora y paga después</span></div>
+    <div class="pay-item"><div class="pay-icon">🔒</div><b>Seguridad</b><span>Tus datos protegidos</span></div>
+  </section>
+
+  <section class="dark-banner">
+    <div class="dark-copy">
+      <h2>Series y películas también en TV</h2>
+      <p>Disfruta entretenimiento y contenido para toda la familia.</p>
+      <button class="demo-btn" data-msg="Abriendo servicio de entretenimiento...">Ver más</button>
+    </div>
+    <div class="dark-art">📺 🎬 🍿</div>
+  </section>
+
+  <h2 class="section-title">Más vendidos en tecnología</h2>
+  <section class="product-wrap">
+    <button class="slider-btn prev" id="prev2">‹</button>
+    <div class="products" id="products2"></div>
+    <button class="slider-btn next" id="next2">›</button>
+  </section>
+
+  <h2 class="section-title">Más vendidos para hacer ejercicio</h2>
+  <section class="product-wrap">
+    <div class="products" id="products3"></div>
+  </section>
+
+  <section class="promo-grid" style="margin-top:22px">
+    <div class="promo p1"><h3>KRUPS</h3><p>Prepara tu café favorito en casa.</p></div>
+    <div class="promo p2"><h3>NINJA</h3><p>Electrodomésticos para tu cocina.</p></div>
+    <div class="promo p3"><h3>Hogar inteligente</h3><p>Soluciones prácticas para todos.</p></div>
+  </section>
+
+  <h2 class="section-title">Productos más vendidos</h2>
+  <section class="product-wrap">
+    <div class="products" id="products4"></div>
+  </section>
+
+  <h2 class="section-title">Categorías</h2>
+  <section class="category-grid">
+    <div class="category"><div class="cat-icon">🚗</div>Accesorios para Autos</div>
+    <div class="category"><div class="cat-icon">💻</div>Computación</div>
+    <div class="category"><div class="cat-icon">📱</div>Celulares</div>
+    <div class="category"><div class="cat-icon">🎮</div>Consolas y Videojuegos</div>
+    <div class="category"><div class="cat-icon">🏠</div>Hogar</div>
+    <div class="category"><div class="cat-icon">👕</div>Ropa y Accesorios</div>
+    <div class="category"><div class="cat-icon">📷</div>Cámaras</div>
+    <div class="category"><div class="cat-icon">🧸</div>Juguetes</div>
+    <div class="category"><div class="cat-icon">🔧</div>Herramientas</div>
+    <div class="category"><div class="cat-icon">⚽</div>Deportes</div>
+    <div class="category"><div class="cat-icon">💄</div>Belleza</div>
+    <div class="category"><div class="cat-icon">🐶</div>Mascotas</div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div><h4>Acerca de</h4><p>Información<br>Trabaja con nosotros<br>Blog</p></div>
+    <div><h4>Ayuda</h4><p>Comprar<br>Vender<br>Resolución de problemas</p></div>
+    <div><h4>Seguridad</h4><p>Centro de seguridad<br>Políticas de privacidad<br>Términos</p></div>
+    <div><h4>Mi cuenta</h4><p>Ingresar<br>Mis compras<br>Favoritos</p></div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const imgs = {
+  tv:"https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=700&q=80",
+  laptop:"https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=700&q=80",
+  phone:"https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?auto=format&fit=crop&w=700&q=80",
+  watch:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=700&q=80",
+  camera:"https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=700&q=80",
+  chair:"https://images.unsplash.com/photo-1505843490701-5be5d7d1a0b3?auto=format&fit=crop&w=700&q=80",
+  bike:"https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?auto=format&fit=crop&w=700&q=80",
+  dumbbell:"https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=700&q=80",
+  treadmill:"https://images.unsplash.com/photo-1576678927484-cc907957088c?auto=format&fit=crop&w=700&q=80",
+  tablet:"https://images.unsplash.com/photo-1542751110-97427bbecf20?auto=format&fit=crop&w=700&q=80"
+};
+
+const sets = {
+  products1:[
+    ["tv","Smart TV 55 pulgadas 4K UHD","900","Hasta 12 cuotas"],
+    ["laptop","Portátil Core i5 15.6 pulgadas","800","Envío gratis"],
+    ["phone","Celular Android 256 GB","779.900","Oferta del día"],
+    ["watch","Smartwatch deportivo","703.900","Envío gratis"],
+    ["camera","Cámara digital profesional","1.555","Hasta 6 cuotas"]
+  ],
+  products2:[
+    ["phone","Smartphone 256 GB pantalla OLED","800","Envío gratis"],
+    ["laptop","Portátil ultraligero 14 pulgadas","800","Oferta especial"],
+    ["tablet","Tablet 10 pulgadas 128 GB","899.900","Envío gratis"],
+    ["watch","Reloj inteligente deportivo","429.900","15% OFF"],
+    ["camera","Cámara compacta 4K","1.555","Envío gratis"]
+  ],
+  products3:[
+    ["bike","Bicicleta de montaña profesional","550","Envío gratis"],
+    ["dumbbell","Set de mancuernas ajustables","279.900","Oferta especial"],
+    ["treadmill","Caminadora eléctrica plegable","1.599","Hasta 12 cuotas"],
+    ["chair","Silla ergonómica para ejercicio","899.900","Envío gratis"],
+    ["bike","Bicicleta estática para hogar","799.900","10% OFF"]
+  ],
+  products4:[
+    ["phone","Celular 5G nueva generación","1.499","Envío gratis"],
+    ["tablet","Tablet Pro 11 pulgadas","1.099","Oferta del día"],
+    ["laptop","Laptop para estudio y trabajo","2.199","Envío gratis"],
+    ["watch","Smartwatch con GPS","499.900","15% OFF"],
+    ["tv","Televisor 50 pulgadas 4K","1.399","Envío gratis"]
+  ]
+};
+
+function money(v){return "$"+Number(v).toLocaleString("es-CO")}
+function renderProducts(id, list){
+  document.getElementById(id).innerHTML=list.map((p,i)=>`
+    <article class="product" data-name="${p[1].toLowerCase()}">
+      <div class="product-img"><img src="${imgs[p[0]]}" alt="${p[1]}"></div>
+      <div class="product-info">
+        <div class="price">${money(p[2])}</div>
+        <div class="installments">${p[3]}</div>
+        <div class="discount">${i%2===0 ? "10% OFF" : "Oferta destacada"}</div>
+        <div class="product-name">${p[1]}</div>
+        <div class="free">✓ Envío gratis</div>
+      </div>
+    </article>`).join("");
+}
+Object.entries(sets).forEach(([key,list])=>renderProducts(key,list));
+
+const toast=document.getElementById("toast");
+function showToast(msg){
+  toast.textContent=msg;toast.classList.add("show");
+  clearTimeout(window.toastTimer);
+  window.toastTimer=setTimeout(()=>toast.classList.remove("show"),2200);
+}
+document.querySelectorAll("[data-msg]").forEach(el=>el.addEventListener("click",()=>showToast(el.dataset.msg)));
+document.querySelectorAll(".product").forEach(el=>el.addEventListener("click",()=>showToast("Producto seleccionado: "+el.querySelector(".product-name").textContent)));
+
+function rotate(id,dir){
+  const el=document.getElementById(id);
+  el.scrollBy({left:dir*260,behavior:"smooth"});
+}
+["prev1","prev2"].forEach((id,i)=>document.getElementById(id).onclick=()=>rotate(["products1","products2"][i],-1));
+["next1","next2"].forEach((id,i)=>document.getElementById(id).onclick=()=>rotate(["products1","products2"][i],1));
+
+document.getElementById("searchForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  const q=document.getElementById("searchInput").value.trim().toLowerCase();
+  if(!q){showToast("Escribe algo para buscar");return}
+  const products=[...document.querySelectorAll(".product")];
+  const matches=products.filter(p=>p.dataset.name.includes(q));
+  products.forEach(p=>p.style.display=matches.includes(p)?"block":"none");
+  showToast(matches.length?`Encontramos ${matches.length} producto(s)`:`No encontramos resultados para "${q}"`);
+  if(matches[0]) matches[0].scrollIntoView({behavior:"smooth",block:"center"});
+});
+document.getElementById("searchInput").addEventListener("input",e=>{
+  if(!e.target.value){
+    document.querySelectorAll(".product").forEach(p=>p.style.display="block");
+  }
+});
+</script>
+</body>
+</html>
