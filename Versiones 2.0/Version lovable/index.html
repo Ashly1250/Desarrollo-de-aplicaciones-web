@@ -1,1 +1,159 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MercadoClon, un marketplace académico con tecnología, hogar, moda y ofertas destacadas.">
+    <title>MercadoClon | Compra fácil, encuentra de todo</title>
+    <link rel="stylesheet" href="estilos.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-main container">
+        <a class="brand" href="#inicio" aria-label="MercadoClon, inicio">
+          <span class="brand-mark" aria-hidden="true">M</span>
+          <span>Mercado<span>Clon</span></span>
+        </a>
 
+        <form class="search" role="search">
+          <label class="sr-only" for="site-search">Buscar productos</label>
+          <input id="site-search" type="search" placeholder="Buscar productos, marcas y más…">
+          <button type="button" aria-label="Buscar">⌕</button>
+        </form>
+
+        <nav class="account-nav" aria-label="Opciones de usuario">
+          <a href="#cuenta">Mi cuenta</a>
+          <a href="#compras">Mis compras</a>
+          <a class="cart-link" href="#carrito" aria-label="Carrito de compras">🛒 <span>Carrito</span></a>
+        </nav>
+      </div>
+
+      <nav class="category-nav" aria-label="Navegación principal">
+        <div class="container nav-links">
+          <a href="#categorias">Categorías</a>
+          <a href="#ofertas">Ofertas</a>
+          <a href="#tecnologia">Tecnología</a>
+          <a href="#hogar">Hogar</a>
+          <a href="#moda">Moda</a>
+          <a href="#ayuda">Ayuda</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="inicio">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="container hero-content">
+          <div class="hero-copy">
+            <p class="eyebrow">Semana de ofertas</p>
+            <h1 id="hero-title">Todo lo que buscas, más cerca.</h1>
+            <p>Encuentra tecnología, moda y hogar con descuentos de hasta 40% y envío gratis.</p>
+            <a class="button button-dark" href="#productos">Ver ofertas</a>
+          </div>
+          <div class="hero-visual" aria-label="Productos destacados: audífonos, teléfono y consola" role="img">
+            <div class="hero-disc"></div>
+            <span class="hero-phone">▣</span>
+            <span class="hero-headphones">🎧</span>
+            <span class="hero-game">🎮</span>
+            <span class="sale-badge">40%<small>OFF</small></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="benefits" aria-label="Beneficios de compra">
+        <div class="container benefit-grid">
+          <article><span aria-hidden="true">💳</span><div><strong>Pago seguro</strong><p>Compra con total tranquilidad</p></div></article>
+          <article><span aria-hidden="true">🚚</span><div><strong>Envíos rápidos</strong><p>Recibe en la puerta de tu casa</p></div></article>
+          <article><span aria-hidden="true">↩</span><div><strong>Devolución fácil</strong><p>Hasta 30 días para devolver</p></div></article>
+        </div>
+      </section>
+
+      <section class="section container" id="categorias" aria-labelledby="categories-title">
+        <div class="section-heading">
+          <div><p class="eyebrow">Explora</p><h2 id="categories-title">Categorías populares</h2></div>
+          <a href="#productos">Ver todas →</a>
+        </div>
+        <div class="categories-grid">
+          <a class="category-card" id="tecnologia" href="#productos"><span>💻</span><strong>Tecnología</strong><small>1.250 productos</small></a>
+          <a class="category-card" href="#productos"><span>📱</span><strong>Smartphones</strong><small>840 productos</small></a>
+          <a class="category-card" href="#productos"><span>🎧</span><strong>Audio</strong><small>530 productos</small></a>
+          <a class="category-card" id="hogar" href="#productos"><span>🛋️</span><strong>Hogar</strong><small>2.100 productos</small></a>
+          <a class="category-card" href="#productos"><span>🎮</span><strong>Gaming</strong><small>760 productos</small></a>
+          <a class="category-card" id="moda" href="#productos"><span>👟</span><strong>Moda</strong><small>3.400 productos</small></a>
+        </div>
+      </section>
+
+      <section class="section products-section" id="productos" aria-labelledby="products-title">
+        <div class="container">
+          <div class="section-heading">
+            <div><p class="eyebrow">Elegidos para ti</p><h2 id="products-title">Productos destacados</h2></div>
+            <a href="#productos">Ver todos →</a>
+          </div>
+
+          <div class="product-grid">
+            <article class="product-card">
+              <div class="product-media media-blue"><span class="product-chip">-25%</span><div role="img" aria-label="Audífonos inalámbricos negros">🎧</div><img alt="Audífonos inalámbricos negros" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="></div>
+              <div class="product-info"><p class="product-kicker">Audio</p><h3>Audífonos Wave Pro</h3><div class="rating" aria-label="4.8 de 5 estrellas">★★★★★ <small>4.8</small></div><p class="old-price">$ 319.900</p><p class="price">$ 239.900 <span>25% OFF</span></p><p class="shipping">Envío gratis</p><button type="button" class="button">Comprar</button></div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-media media-lilac"><span class="product-chip">-18%</span><div role="img" aria-label="Teléfono inteligente azul">📱</div><img alt="Teléfono inteligente azul" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="></div>
+              <div class="product-info"><p class="product-kicker">Smartphones</p><h3>Smartphone Nova 5G</h3><div class="rating" aria-label="4.9 de 5 estrellas">★★★★★ <small>4.9</small></div><p class="old-price">$ 1.949.900</p><p class="price">$ 1.599.900 <span>18% OFF</span></p><p class="shipping">Envío gratis</p><button type="button" class="button">Comprar</button></div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-media media-mint"><span class="product-chip">-30%</span><div role="img" aria-label="Reloj inteligente negro">⌚</div><img alt="Reloj inteligente negro" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="></div>
+              <div class="product-info"><p class="product-kicker">Tecnología</p><h3>Smartwatch Active S</h3><div class="rating" aria-label="4.7 de 5 estrellas">★★★★★ <small>4.7</small></div><p class="old-price">$ 499.900</p><p class="price">$ 349.900 <span>30% OFF</span></p><p class="shipping">Envío gratis</p><button type="button" class="button">Comprar</button></div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-media media-peach"><span class="product-chip">-20%</span><div role="img" aria-label="Consola de videojuegos blanca">🎮</div><img alt="Consola de videojuegos blanca" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="></div>
+              <div class="product-info"><p class="product-kicker">Gaming</p><h3>Consola GameBox One</h3><div class="rating" aria-label="4.9 de 5 estrellas">★★★★★ <small>4.9</small></div><p class="old-price">$ 2.499.900</p><p class="price">$ 1.999.900 <span>20% OFF</span></p><p class="shipping">Envío gratis</p><button type="button" class="button">Comprar</button></div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-media media-rose"><span class="product-chip">-35%</span><div role="img" aria-label="Zapatillas deportivas blancas">👟</div><img alt="Zapatillas deportivas blancas" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="></div>
+              <div class="product-info"><p class="product-kicker">Moda</p><h3>Tenis Urban Flex</h3><div class="rating" aria-label="4.6 de 5 estrellas">★★★★★ <small>4.6</small></div><p class="old-price">$ 299.900</p><p class="price">$ 194.900 <span>35% OFF</span></p><p class="shipping">Envío gratis</p><button type="button" class="button">Comprar</button></div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-media media-sky"><span class="product-chip">-15%</span><div role="img" aria-label="Computador portátil gris">💻</div><img alt="Computador portátil gris" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="></div>
+              <div class="product-info"><p class="product-kicker">Tecnología</p><h3>Portátil Air 14</h3><div class="rating" aria-label="4.8 de 5 estrellas">★★★★★ <small>4.8</small></div><p class="old-price">$ 3.299.900</p><p class="price">$ 2.804.900 <span>15% OFF</span></p><p class="shipping">Envío gratis</p><button type="button" class="button">Comprar</button></div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-media media-sand"><span class="product-chip">-28%</span><div role="img" aria-label="Cafetera eléctrica roja">☕</div><img alt="Cafetera eléctrica roja" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="></div>
+              <div class="product-info"><p class="product-kicker">Hogar</p><h3>Cafetera Barista Mini</h3><div class="rating" aria-label="4.7 de 5 estrellas">★★★★★ <small>4.7</small></div><p class="old-price">$ 389.900</p><p class="price">$ 280.900 <span>28% OFF</span></p><p class="shipping">Envío gratis</p><button type="button" class="button">Comprar</button></div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-media media-green"><span class="product-chip">-22%</span><div role="img" aria-label="Altavoz portátil amarillo">🔊</div><img alt="Altavoz portátil amarillo" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="></div>
+              <div class="product-info"><p class="product-kicker">Audio</p><h3>Parlante Beat Go</h3><div class="rating" aria-label="4.5 de 5 estrellas">★★★★★ <small>4.5</small></div><p class="old-price">$ 249.900</p><p class="price">$ 194.900 <span>22% OFF</span></p><p class="shipping">Envío gratis</p><button type="button" class="button">Comprar</button></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section offers" id="ofertas" aria-labelledby="offers-title">
+        <div class="container">
+          <div class="offer-heading"><div><p class="eyebrow">Solo por hoy</p><h2 id="offers-title">Ofertas relámpago</h2></div><span>Terminan pronto</span></div>
+          <div class="offer-grid">
+            <article><div class="offer-icon" role="img" aria-label="Televisor de alta definición">📺</div><div><small>TV &amp; Video</small><h3>Smart TV Vision 50”</h3><p><del>$ 2.299.900</del> <strong>$ 1.609.900</strong></p><span>30% OFF</span></div></article>
+            <article><div class="offer-icon" role="img" aria-label="Aspiradora robot">◉</div><div><small>Hogar</small><h3>Aspiradora Robot Clean</h3><p><del>$ 899.900</del> <strong>$ 584.900</strong></p><span>35% OFF</span></div></article>
+            <article><div class="offer-icon" role="img" aria-label="Cámara fotográfica">📷</div><div><small>Fotografía</small><h3>Cámara Pixel Pro</h3><p><del>$ 2.799.900</del> <strong>$ 2.099.900</strong></p><span>25% OFF</span></div></article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="ayuda">
+      <div class="container footer-grid">
+        <div class="footer-about"><a class="brand footer-brand" href="#inicio"><span class="brand-mark">M</span><span>Mercado<span>Clon</span></span></a><p>Un marketplace creado como ejercicio académico de HTML5 y CSS3.</p></div>
+        <div><h2>Acerca de</h2><a href="#inicio">Quiénes somos</a><a href="#inicio">Términos</a><a href="#inicio">Privacidad</a></div>
+        <div><h2>Servicio al cliente</h2><a href="#compras">Mis compras</a><a href="#ayuda">Devoluciones</a><a href="#ayuda">Envíos</a></div>
+        <div id="cuenta"><h2>Ayuda</h2><a href="#ayuda">Centro de ayuda</a><a href="#ayuda">Preguntas frecuentes</a><a href="mailto:hola@mercadoclon.example">Contacto</a></div>
+        <div><h2>Síguenos</h2><div class="socials"><a href="#inicio" aria-label="Instagram">◎</a><a href="#inicio" aria-label="Facebook">f</a><a href="#inicio" aria-label="X">X</a></div></div>
+      </div>
+      <div class="footer-bottom container"><p>© 2026 MercadoClon. Proyecto académico sin fines comerciales.</p><p>Hecho con HTML5 + CSS3</p></div>
+    </footer>
+  </body>
+</html>
