@@ -1,1 +1,329 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MercadoClon | Compra online al mejor precio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+  <!-- ===================== ENCABEZADO ===================== -->
+  <header class="site-header">
+    <div class="header-top">
+      <a href="#" class="logo" aria-label="Ir al inicio de MercadoClon">
+        Mercado<span>Clon</span>
+      </a>
+
+      <form class="search-bar" role="search" action="#" onsubmit="return false;">
+        <label for="buscador" class="visually-hidden">Buscar productos</label>
+        <input type="text" id="buscador" name="buscador" placeholder="Buscar productos, marcas y más...">
+        <button type="button" class="search-btn" aria-label="Buscar">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+            <circle cx="10" cy="10" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+            <line x1="15.2" y1="15.2" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </form>
+
+      <nav class="user-links" aria-label="Enlaces de usuario">
+        <a href="#">
+          <span class="link-title">Mi cuenta</span>
+          <span class="link-sub">Ingresá o registrate</span>
+        </a>
+        <a href="#">
+          <span class="link-title">Mis compras</span>
+          <span class="link-sub">Seguimiento de pedidos</span>
+        </a>
+        <a href="#" class="cart-link">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+            <path d="M4 4h2l2.4 12.4a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.6L22 8H7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+            <circle cx="10" cy="21" r="1.4" fill="currentColor"/>
+            <circle cx="17" cy="21" r="1.4" fill="currentColor"/>
+          </svg>
+          <span class="link-title">Carrito</span>
+        </a>
+      </nav>
+    </div>
+
+    <!-- ===================== MENÚ DE NAVEGACIÓN ===================== -->
+    <nav class="main-nav" aria-label="Categorías principales">
+      <ul>
+        <li><a href="#categorias">Categorías</a></li>
+        <li><a href="#ofertas" class="highlight">Ofertas</a></li>
+        <li><a href="#tecnologia">Tecnología</a></li>
+        <li><a href="#hogar">Hogar</a></li>
+        <li><a href="#ayuda">Ayuda</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ===================== BANNER PROMOCIONAL ===================== -->
+    <section class="promo-banner" aria-label="Promoción principal">
+      <div class="promo-text">
+        <p class="promo-eyebrow">Hot Days</p>
+        <h1>Hasta 40% OFF en tecnología</h1>
+        <p>Pagá en cuotas sin interés y recibí tu pedido en menos de 48 horas.</p>
+        <a href="#destacados" class="promo-btn">Ver ofertas</a>
+      </div>
+      <div class="promo-image" aria-hidden="true">
+        <img src="https://picsum.photos/seed/promobanner/600/400" alt="">
+      </div>
+    </section>
+
+    <!-- ===================== CATEGORÍAS ===================== -->
+    <section id="categorias" class="categories">
+      <h2>Explorá por categoría</h2>
+      <div class="categories-grid">
+        <a href="#" class="category-card">
+          <img src="https://picsum.photos/seed/cat-tecnologia/160/160" alt="Categoría Tecnología">
+          <span>Tecnología</span>
+        </a>
+        <a href="#" class="category-card">
+          <img src="https://picsum.photos/seed/cat-hogar/160/160" alt="Categoría Hogar">
+          <span>Hogar</span>
+        </a>
+        <a href="#" class="category-card">
+          <img src="https://picsum.photos/seed/cat-moda/160/160" alt="Categoría Moda">
+          <span>Moda</span>
+        </a>
+        <a href="#" class="category-card">
+          <img src="https://picsum.photos/seed/cat-deportes/160/160" alt="Categoría Deportes">
+          <span>Deportes</span>
+        </a>
+        <a href="#" class="category-card">
+          <img src="https://picsum.photos/seed/cat-juguetes/160/160" alt="Categoría Juguetería">
+          <span>Juguetería</span>
+        </a>
+        <a href="#" class="category-card">
+          <img src="https://picsum.photos/seed/cat-mascotas/160/160" alt="Categoría Mascotas">
+          <span>Mascotas</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===================== PRODUCTOS DESTACADOS ===================== -->
+    <section id="destacados" class="featured-products">
+      <h2>Productos destacados</h2>
+
+      <div class="products-grid">
+
+        <article class="product-card">
+          <div class="discount-tag">-25%</div>
+          <img src="https://picsum.photos/seed/prod1/280/280" alt="Auriculares inalámbricos con estuche de carga">
+          <h3>Auriculares Inalámbricos Bluetooth Pro</h3>
+          <div class="rating" aria-label="Valoración 4.5 de 5 estrellas">
+            <span class="stars">★★★★☆</span>
+            <span class="rating-count">(1.243)</span>
+          </div>
+          <p class="price-old">$89.900</p>
+          <p class="price-new">$67.400</p>
+          <p class="discount-text">25% OFF</p>
+          <p class="shipping">Envío gratis</p>
+          <button type="button" class="buy-btn">Comprar</button>
+        </article>
+
+        <article class="product-card">
+          <div class="discount-tag">-18%</div>
+          <img src="https://picsum.photos/seed/prod2/280/280" alt="Smartwatch deportivo con correa de silicona">
+          <h3>Smartwatch Deportivo GPS Sumergible</h3>
+          <div class="rating" aria-label="Valoración 4 de 5 estrellas">
+            <span class="stars">★★★★☆</span>
+            <span class="rating-count">(856)</span>
+          </div>
+          <p class="price-old">$159.000</p>
+          <p class="price-new">$130.400</p>
+          <p class="discount-text">18% OFF</p>
+          <p class="shipping">Envío gratis</p>
+          <button type="button" class="buy-btn">Comprar</button>
+        </article>
+
+        <article class="product-card">
+          <div class="discount-tag">-30%</div>
+          <img src="https://picsum.photos/seed/prod3/280/280" alt="Cafetera eléctrica de acero inoxidable">
+          <h3>Cafetera Eléctrica 12 Tazas Acero</h3>
+          <div class="rating" aria-label="Valoración 4.7 de 5 estrellas">
+            <span class="stars">★★★★★</span>
+            <span class="rating-count">(2.011)</span>
+          </div>
+          <p class="price-old">$74.500</p>
+          <p class="price-new">$52.150</p>
+          <p class="discount-text">30% OFF</p>
+          <p class="shipping">Llega mañana</p>
+          <button type="button" class="buy-btn">Comprar</button>
+        </article>
+
+        <article class="product-card">
+          <div class="discount-tag">-12%</div>
+          <img src="https://picsum.photos/seed/prod4/280/280" alt="Silla ergonómica de oficina color gris">
+          <h3>Silla Ergonómica de Oficina Reclinable</h3>
+          <div class="rating" aria-label="Valoración 4.3 de 5 estrellas">
+            <span class="stars">★★★★☆</span>
+            <span class="rating-count">(412)</span>
+          </div>
+          <p class="price-old">$210.000</p>
+          <p class="price-new">$184.800</p>
+          <p class="discount-text">12% OFF</p>
+          <p class="shipping">Envío gratis</p>
+          <button type="button" class="buy-btn">Comprar</button>
+        </article>
+
+        <article class="product-card">
+          <div class="discount-tag">-40%</div>
+          <img src="https://picsum.photos/seed/prod5/280/280" alt="Zapatillas deportivas para correr color blanco">
+          <h3>Zapatillas Running Ultra Livianas</h3>
+          <div class="rating" aria-label="Valoración 4.6 de 5 estrellas">
+            <span class="stars">★★★★★</span>
+            <span class="rating-count">(3.560)</span>
+          </div>
+          <p class="price-old">$98.000</p>
+          <p class="price-new">$58.800</p>
+          <p class="discount-text">40% OFF</p>
+          <p class="shipping">Envío gratis</p>
+          <button type="button" class="buy-btn">Comprar</button>
+        </article>
+
+        <article class="product-card">
+          <div class="discount-tag">-20%</div>
+          <img src="https://picsum.photos/seed/prod6/280/280" alt="Aspiradora robot inteligente color negro">
+          <h3>Aspiradora Robot Inteligente WiFi</h3>
+          <div class="rating" aria-label="Valoración 4.4 de 5 estrellas">
+            <span class="stars">★★★★☆</span>
+            <span class="rating-count">(978)</span>
+          </div>
+          <p class="price-old">$349.900</p>
+          <p class="price-new">$279.900</p>
+          <p class="discount-text">20% OFF</p>
+          <p class="shipping">Llega en 2 días</p>
+          <button type="button" class="buy-btn">Comprar</button>
+        </article>
+
+        <article class="product-card">
+          <div class="discount-tag">-15%</div>
+          <img src="https://picsum.photos/seed/prod7/280/280" alt="Mochila urbana resistente al agua">
+          <h3>Mochila Urbana Antirrobo Impermeable</h3>
+          <div class="rating" aria-label="Valoración 4.2 de 5 estrellas">
+            <span class="stars">★★★★☆</span>
+            <span class="rating-count">(631)</span>
+          </div>
+          <p class="price-old">$45.000</p>
+          <p class="price-new">$38.250</p>
+          <p class="discount-text">15% OFF</p>
+          <p class="shipping">Envío gratis</p>
+          <button type="button" class="buy-btn">Comprar</button>
+        </article>
+
+        <article class="product-card">
+          <div class="discount-tag">-22%</div>
+          <img src="https://picsum.photos/seed/prod8/280/280" alt="Parlante portátil resistente al agua color azul">
+          <h3>Parlante Bluetooth Portátil Sumergible</h3>
+          <div class="rating" aria-label="Valoración 4.5 de 5 estrellas">
+            <span class="stars">★★★★☆</span>
+            <span class="rating-count">(1.802)</span>
+          </div>
+          <p class="price-old">$62.000</p>
+          <p class="price-new">$48.360</p>
+          <p class="discount-text">22% OFF</p>
+          <p class="shipping">Envío gratis</p>
+          <button type="button" class="buy-btn">Comprar</button>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ===================== OFERTAS ===================== -->
+    <section id="ofertas" class="offers">
+      <div class="offers-header">
+        <h2>Ofertas relámpago</h2>
+        <p>Descuentos por tiempo limitado, ¡no te los pierdas!</p>
+      </div>
+
+      <div class="offers-grid">
+        <article class="offer-card">
+          <img src="https://picsum.photos/seed/oferta1/220/220" alt="Televisor LED 50 pulgadas">
+          <div class="offer-info">
+            <h3>Televisor LED 50" 4K UHD</h3>
+            <p class="price-old">$620.000</p>
+            <p class="price-new">$429.900</p>
+            <p class="discount-text">31% OFF</p>
+          </div>
+        </article>
+
+        <article class="offer-card">
+          <img src="https://picsum.photos/seed/oferta2/220/220" alt="Licuadora de vaso de vidrio">
+          <div class="offer-info">
+            <h3>Licuadora 3 Velocidades Vidrio</h3>
+            <p class="price-old">$38.000</p>
+            <p class="price-new">$24.700</p>
+            <p class="discount-text">35% OFF</p>
+          </div>
+        </article>
+
+        <article class="offer-card">
+          <img src="https://picsum.photos/seed/oferta3/220/220" alt="Notebook delgada color plateado">
+          <div class="offer-info">
+            <h3>Notebook 15.6" Core i5 8GB RAM</h3>
+            <p class="price-old">$1.150.000</p>
+            <p class="price-new">$897.000</p>
+            <p class="discount-text">22% OFF</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== PIE DE PÁGINA ===================== -->
+  <footer id="ayuda" class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Acerca de MercadoClon</h4>
+        <ul>
+          <li><a href="#">Quiénes somos</a></li>
+          <li><a href="#">Trabajá con nosotros</a></li>
+          <li><a href="#">Términos y condiciones</a></li>
+          <li><a href="#">Políticas de privacidad</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Ayuda</h4>
+        <ul>
+          <li><a href="#">Cómo comprar</a></li>
+          <li><a href="#">Cómo vender</a></li>
+          <li><a href="#">Devoluciones</a></li>
+          <li><a href="#">Preguntas frecuentes</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="mailto:contacto@mercadoclon.com">contacto@mercadoclon.com</a></li>
+          <li><a href="tel:08001234567">0800-123-4567</a></li>
+          <li>Lunes a viernes, 9 a 18 hs</li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Seguinos</h4>
+        <ul class="social-list">
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Twitter / X</a></li>
+          <li><a href="#">YouTube</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="copyright">© 2026 MercadoClon. Actividad académica — Todos los derechos reservados.</p>
+  </footer>
+
+</body>
+</html>
 
